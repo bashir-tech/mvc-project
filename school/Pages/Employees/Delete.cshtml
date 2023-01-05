@@ -1,0 +1,57 @@
+﻿
+
+
+@page
+
+@using Microsoft.Data.SqlClient;
+
+
+
+@{
+
+    try
+    {
+
+
+
+        string EmployeeID = Request.Query["EmployeeID"];
+
+        string connectionstring = "Data Source=.\\SQLEXPRESS;Initial Catalog=Northwind;" +
+    "Integrated Security=True;Connect Timeout=30;Encrypt=False;" +
+    "TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;";
+        using (SqlConnection conn = new SqlConnection(connectionstring))
+
+        {
+            conn.Open();
+
+            string sql = "DELETE FROM Employees WHERE EmployeeID=@EmployeeID";
+
+            using (SqlCommand com = new SqlCommand(sql, conn))
+            {
+
+
+
+                com.Parameters.AddWithValue("@EmployeeID", EmployeeID
+                );
+
+
+                com.ExecuteNonQuery();
+
+            }
+
+        }
+
+    }
+    catch (Exception )
+    {
+
+        throw;
+
+    }
+
+
+
+    Response.Redirect("/Employees/Index");
+
+}
+}

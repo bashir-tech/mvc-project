@@ -1,0 +1,41 @@
+﻿@page
+@model school.Pages.Employees.IndexModel
+
+<br >
+<h2> List of Employee</h2>
+<a class='btn btn-outline-success btn-sm' href=' /Employees/Create'> New Employee </a>
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <th >#</th>
+            <th >Name</th>
+            <th>LastName</th>
+           
+            
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.list)
+        {
+              <tr>
+                <td>@item.EmployeeID</td>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                
+              
+               
+                <td>
+                    <a class="btn btn-outline-danger btn-sm"  href="/Employees/Edit?EmployeeID=@item.EmployeeID"> Edit </a>
+
+                    <a class="btn btn-danger btn-sm" href="/Employees/Delete?EmployeeID=@item.EmployeeID"> Delete </a>
+                </td>
+        </tr>
+           
+
+        }
+
+    </tbody>
+</table>
